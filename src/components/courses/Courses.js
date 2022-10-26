@@ -23,7 +23,7 @@ const Courses = () => {
                 <div className='text-white bg-gradient-to-tr from-slate-500 hidden lg:block  p-5 mt-5 ml-5 rounded'>
 
                     {
-                        courses.map(course => <Link to={`/courses/${course.id}`}><p>{course.title}</p></Link>)
+                        courses.map(course => <Link to={`/details/${course.id}`}><p>{course.title}</p></Link>)
                     }
                 </div>
                 <div className='grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-x-5
@@ -31,7 +31,7 @@ const Courses = () => {
                     {
                         courses.map(course =>
 
-                            <Link to={`/courses/${course.id}`}>
+                            <Link to={`/details/${course.id}`}>
                                 <div className="card card-compact bg-gradient-to-tr from-slate-500 w-96 shadow-xl">
                                     <figure><img className='h-96 w-auto' src={course.img} alt="" /></figure>
                                     <div className="card-body">

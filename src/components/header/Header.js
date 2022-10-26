@@ -14,7 +14,7 @@ const Header = () => {
                         <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                             <li><Link to='/'>Home</Link></li>
                             <li><Link to='/courses'>Courses</Link></li>
-                            <li><Link>Blog</Link></li>
+                            <li><Link to='/blog'>Blog</Link></li>
                         </ul>
                     </div>
                     <Link to='/' className="btn btn-ghost normal-case text-3xl font-bold"><img src={img} className="h-16 w-16" alt='' />ducavo</Link>
@@ -23,7 +23,7 @@ const Header = () => {
                     <ul className="menu menu-horizontal p-0 text-lg font-semibold text-gray-500">
                         <li><Link to='/'>Home</Link></li>
                         <li><Link to='/courses'>Courses</Link></li>
-                        <li><Link>Blog</Link></li>
+                        <li><Link to='/blog'>Blog</Link></li>
                     </ul>
                 </div>
                 <div className="navbar-end">
