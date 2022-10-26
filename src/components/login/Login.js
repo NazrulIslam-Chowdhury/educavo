@@ -25,7 +25,7 @@ const Login = () => {
                                 <Link to="" className="label-text-alt link link-hover">Forgot password?</Link>
 
                             </label>
-                            <p>Don't have an account?<Link className='link link-hover' to='/register'>Register now</Link></p>
+                            <p>Don't have an account ?<Link className='link link-hover' to='/register'> Register now</Link></p>
                         </div>
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Login</button>

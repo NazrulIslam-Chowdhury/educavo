@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FaFacebook, FaGoogle } from 'react-icons/fa';
 
 const Register = () => {
     return (
@@ -34,10 +35,13 @@ const Register = () => {
                             </label>
                             <input type="password" placeholder="confirm password" name='confirm' className="input input-bordered" required />
                         </div>
-                        <p>Already have an account?<Link to='/login' className="link link-hover"> Login now</Link></p>
+                        <p>Already have an account ?<Link to='/login' className="link link-hover">     Login now</Link></p>
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Register</button>
                         </div>
+                        <p className='text-center mt-4 text-lg'> <hr /> or <hr /></p>
+                        <button className="btn btn-outline btn-primary"><FaGoogle />  Register with Google</button>
+                        <button className="btn btn-outline btn-primary"><FaFacebook />  Register with Facebook</button>
                     </div>
                 </div>
             </div>
