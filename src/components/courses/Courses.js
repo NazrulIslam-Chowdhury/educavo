@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../header/Header';
+import LeftSideBar from '../leftsidebar/LeftSideBar';
 
 const Courses = () => {
     return (
@@ -8,21 +9,16 @@ const Courses = () => {
             backgroundPosition: 'center',
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
-            width: '100vw',
-            height: '100vh',
+            width: 'auto',
+            height: 'auto',
         }}>
             <Header></Header>
-            <Container>
-                <Row >
-                    <Col lg='3' className='d-none d-lg-block'>
-                        <LeftSideNav></LeftSideNav>
-                    </Col>
-                    <Col lg='9'>
-                        <Outlet></Outlet>
-                    </Col>
+            <div className="relative h-32 w-32 ...">
+                <div className="absolute inset-y-0 left-0 w-16 text-white">
+                    <LeftSideBar></LeftSideBar>
+                </div>
+            </div>
 
-                </Row>
-            </Container>
         </div>
     );
 };

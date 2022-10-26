@@ -11,8 +11,8 @@ const Home = () => {
             backgroundPosition: 'center',
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
-            width: '100vw',
-            height: '100vh',
+            width: 'auto',
+            height: 'auto',
         }}>
             <Header></Header>
             <img src={img} alt="" />
