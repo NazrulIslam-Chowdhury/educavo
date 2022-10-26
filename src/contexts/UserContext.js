@@ -11,7 +11,7 @@ const UserContext = ({ children }) => {
             .then(res => res.json())
             .then(data => setCourses(data))
     }, [])
-
+    // console.log(courses)
     const contextInfo = { courses };
     return (
         <CoursesContext.Provider value={contextInfo}>

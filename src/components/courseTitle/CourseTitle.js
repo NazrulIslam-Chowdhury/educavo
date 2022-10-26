@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const CourseTitle = ({ course }) => {
-    console.log(course)
+const CourseTitle = ({ title }) => {
+    console.log(title)
     return (
         <div className='mt-4'>
-            <Link><p>{course.title}</p></Link>
+            <Link><p>{title.title}</p></Link>
         </div>
     );
 };

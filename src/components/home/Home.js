@@ -11,7 +11,7 @@ const Home = () => {
             backgroundPosition: 'center',
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
-            width: 'auto',
+            width: '100vw',
             height: 'auto',
         }}>
             <Header></Header>
