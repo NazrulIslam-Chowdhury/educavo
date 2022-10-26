@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const CourseTitle = ({ course }) => {
     console.log(course)
     return (
-        <div>
+        <div className='mt-4'>
             <Link><p>{course.title}</p></Link>
         </div>
     );

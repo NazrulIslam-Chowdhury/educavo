@@ -9,14 +9,12 @@ const Courses = () => {
             backgroundPosition: 'center',
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
-            width: 'auto',
-            height: 'auto',
+            width: '100vw',
+            height: '100vh',
         }}>
             <Header></Header>
-            <div className="relative h-32 w-32 ...">
-                <div className="absolute inset-y-0 left-0 w-16 text-white">
-                    <LeftSideBar></LeftSideBar>
-                </div>
+            <div>
+                <LeftSideBar></LeftSideBar>
             </div>
 
         </div>
