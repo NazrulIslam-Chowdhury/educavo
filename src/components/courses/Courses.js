@@ -1,7 +1,6 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
-import { CoursesContext } from '../../contexts/UserContext';
-import Header from '../header/Header';
+
 
 
 
@@ -10,15 +9,8 @@ const Courses = () => {
     const courses = useLoaderData();
     console.log(courses)
     return (
-        <div style={{
-            background: `linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(https://images8.alphacoders.com/113/1136157.png)`,
-            backgroundPosition: 'center',
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
-            width: 'auto',
-            height: 'auto',
-        }}>
-            <Header></Header>
+        <div>
+
             <div className=' flex gap-10'>
                 <div className='text-white bg-gradient-to-tr from-slate-500 hidden lg:block  p-5 mt-5 ml-5 rounded'>
 
