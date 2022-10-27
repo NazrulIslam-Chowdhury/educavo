@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useContext } from 'react';
+import { FaFacebook, FaGoogle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../authprovider/AuthProvider';
 
 const Login = () => {
-    const { loginWithEmailPass } = useContext(AuthContext);
+    const { loginWithEmailPass, createUserWithGoogle, createUserWithFacebook } = useContext(AuthContext);
+    const [error, setError] = useState('');
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -21,9 +23,36 @@ const Login = () => {
             })
             .catch(error => {
                 console.error('error', error);
+                setError(error.message);
             })
 
     }
+
+    const createGoogleUserOnClick = () => {
+        createUserWithGoogle()
+            .then(result => {
+                const user = result.user;
+                console.log(user)
+            })
+            .catch(error => {
+                console.error('error', error);
+            })
+    }
+
+    const createFacebookUserOnClick = () => {
+        createUserWithFacebook()
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error => {
+                console.error('error', error)
+                setError(error.message);
+            })
+    }
+
+
+
     return (
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col lg:flex-row-reverse">
@@ -48,10 +77,16 @@ const Login = () => {
 
                             </label>
                             <p>Don't have an account ?<Link className='link link-hover' to='/register'> Register now</Link></p>
+                            <p className='text-red-400 text-lg'>{error}</p>
                         </div>
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Login</button>
                         </div>
+                        <hr />
+                        <p className='text-center mt-4 text-lg'> or</p>
+                        <hr />
+                        <button onClick={createGoogleUserOnClick} className="btn btn-outline btn-primary"><FaGoogle />  Login with Google</button>
+                        <button onClick={createFacebookUserOnClick} className="btn btn-outline btn-primary"><FaFacebook />  Login with Facebook</button>
                     </form>
                 </div>
             </div>

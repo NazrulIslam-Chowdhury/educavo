@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { AuthContext } from '../../authprovider/AuthProvider';
 
 const Register = () => {
-    const { createUser, createUserWithGoogle } = useContext(AuthContext);
+    const { createUser, createUserWithGoogle, createUserWithFacebook } = useContext(AuthContext);
 
     const [error, setError] = useState('');
 
@@ -30,6 +30,7 @@ const Register = () => {
             })
             .catch(error => {
                 console.error('error', error);
+                setError(error.message);
             })
     }
 
@@ -41,6 +42,18 @@ const Register = () => {
             })
             .catch(error => {
                 console.error('error', error);
+            })
+    }
+
+    const createFacebookUserOnClick = () => {
+        createUserWithFacebook()
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error => {
+                console.error('error', error)
+                setError(error.message);
             })
     }
 
@@ -83,6 +96,7 @@ const Register = () => {
                             <input type="password" placeholder="confirm password" name='confirm' className="input input-bordered" required />
                         </div>
                         <p>Already have an account ?<Link to='/login' className="link link-hover">     Login now</Link></p>
+                        <p className='text-red-400 text-lg'>{error}</p>
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Register</button>
                         </div>
@@ -90,7 +104,7 @@ const Register = () => {
                         <p className='text-center mt-4 text-lg'> or</p>
                         <hr />
                         <button onClick={createGoogleUserOnClick} className="btn btn-outline btn-primary"><FaGoogle />  Register with Google</button>
-                        <button className="btn btn-outline btn-primary"><FaFacebook />  Register with Facebook</button>
+                        <button onClick={createFacebookUserOnClick} className="btn btn-outline btn-primary"><FaFacebook />  Register with Facebook</button>
                     </form>
                 </div>
             </div>
