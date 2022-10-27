@@ -17,7 +17,7 @@ const Header = () => {
                             <li><Link to='/blog'>Blog</Link></li>
                         </ul>
                     </div>
-                    <Link to='/' className="btn btn-ghost normal-case text-3xl font-bold"><img src={img} className="h-16 w-16" alt='' />ducavo</Link>
+                    <Link to='/' className="flex items-center normal-case text-3xl font-bold"><img src={img} className="h-16 w-16" alt='' />ducavo</Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal p-0 text-lg font-semibold text-gray-500">
@@ -26,7 +26,7 @@ const Header = () => {
                         <li><Link to='/blog'>Blog</Link></li>
                     </ul>
                 </div>
-                <div className="navbar-end">
+                <div className="navbar-end mr-5">
                     <Link to='/login' className="btn">Login</Link>
                 </div>
             </div>
