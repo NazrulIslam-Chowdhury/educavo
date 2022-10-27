@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { AuthContext } from '../../authprovider/AuthProvider';
 
 const Register = () => {
-    const { createUser } = useContext(AuthContext);
+    const { createUser, createUserWithGoogle } = useContext(AuthContext);
 
     const [error, setError] = useState('');
 
@@ -27,6 +27,17 @@ const Register = () => {
                 const user = result.user;
                 console.log(user);
                 form.reset();
+            })
+            .catch(error => {
+                console.error('error', error);
+            })
+    }
+
+    const createGoogleUserOnClick = () => {
+        createUserWithGoogle()
+            .then(result => {
+                const user = result.user;
+                console.log(user)
             })
             .catch(error => {
                 console.error('error', error);
@@ -78,7 +89,7 @@ const Register = () => {
                         <hr />
                         <p className='text-center mt-4 text-lg'> or</p>
                         <hr />
-                        <button className="btn btn-outline btn-primary"><FaGoogle />  Register with Google</button>
+                        <button onClick={createGoogleUserOnClick} className="btn btn-outline btn-primary"><FaGoogle />  Register with Google</button>
                         <button className="btn btn-outline btn-primary"><FaFacebook />  Register with Facebook</button>
                     </form>
                 </div>
