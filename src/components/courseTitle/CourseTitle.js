@@ -6,7 +6,7 @@ const CourseTitle = () => {
     const [titles, setTitles] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/courses')
+        fetch('https://educavo-server.vercel.app/courses')
             .then(res => res.json())
             .then(data => setTitles(data))
     }, [])

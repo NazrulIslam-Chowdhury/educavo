@@ -24,13 +24,13 @@ function App() {
         },
         {
           path: '/courses',
-          loader: () => fetch('http://localhost:5000/details'),
+          loader: () => fetch('https://educavo-server.vercel.app/details'),
           element: <Courses></Courses>
         },
 
         {
           path: "/course/:id",
-          loader: ({ params }) => fetch(`http://localhost:5000/course/${params.id}`),
+          loader: ({ params }) => fetch(`https://educavo-server.vercel.app/course/${params.id}`),
           element: <Details></Details>
         },
         {
@@ -51,8 +51,8 @@ function App() {
         },
         {
           path: '/checkout/:id',
-          element: <CheackOutPage></CheackOutPage>,
-          loader: ({ params }) => fetch(`http://localhost:5000/course/${params.id}`)
+          element: <PrivateRoute><CheackOutPage></CheackOutPage></PrivateRoute>,
+          loader: ({ params }) => fetch(`https://educavo-server.vercel.app/course/${params.id}`)
         },
         {
           path: '*',

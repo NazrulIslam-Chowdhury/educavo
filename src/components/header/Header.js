@@ -60,7 +60,10 @@ const Header = () => {
                     </ul>
 
                 </div>
-                <img className='w-10 h-10 rounded-full' src={user?.photoURL} alt="" />
+
+                <div className="tooltip tooltip-open tooltip-accent" data-tip={user?.displayName}>
+                    <img className='w-10 h-10 rounded-full' src={user?.photoURL} alt="" />
+                </div>
 
                 {/* theme...have to modify it */}
                 <div className={`App ${theme}`}>

@@ -28,13 +28,12 @@ const Register = () => {
         createUser(email, password, name, url)
             .then(result => {
                 const user = result.user;
-                console.log(user);
+                console.log(user)
                 form.reset();
                 setError('');
                 navigate(from, { replace: true });
             })
             .catch(error => {
-                console.error('error', error);
                 setError(error.message);
             })
     }
@@ -48,7 +47,6 @@ const Register = () => {
                 navigate(from, { replace: true });
             })
             .catch(error => {
-                console.error('error', error);
                 setError(error.message);
             })
     }
@@ -62,7 +60,6 @@ const Register = () => {
                 navigate(from, { replace: true });
             })
             .catch(error => {
-                console.error('error', error)
                 setError(error.message);
             })
     }

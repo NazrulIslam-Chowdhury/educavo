@@ -29,7 +29,7 @@ const Login = () => {
                 navigate(from, { replace: true });
             })
             .catch(error => {
-                console.error('error', error);
+
                 setError(error.message);
             })
 
@@ -43,7 +43,7 @@ const Login = () => {
                 navigate(from, { replace: true });
             })
             .catch(error => {
-                console.error('error', error);
+                setError(error.message)
             })
     }
 
@@ -55,7 +55,7 @@ const Login = () => {
                 navigate(from, { replace: true });
             })
             .catch(error => {
-                console.error('error', error)
+
                 setError(error.message);
             })
     }

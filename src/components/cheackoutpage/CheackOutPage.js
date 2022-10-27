@@ -3,7 +3,6 @@ import { useLoaderData } from 'react-router-dom';
 
 const CheackOutPage = () => {
     const checkPage = useLoaderData();
-    console.log(checkPage)
     return (
         <div className='grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 p-5 gap-10 mt-20'>
             <div>

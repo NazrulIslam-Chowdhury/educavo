@@ -8,7 +8,6 @@ import CourseTitle from '../courseTitle/CourseTitle';
 
 const Courses = () => {
     const courseDetails = useLoaderData()
-    console.log(courseDetails)
     return (
         <div>
 
