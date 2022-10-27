@@ -1,12 +1,29 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../authprovider/AuthProvider';
-import img from './../../logo.png'
+import img from './../../logo.png';
+import './Header.css';
 
 const Header = () => {
     const { user, logOut } = useContext(AuthContext);
     const [error, setError] = useState();
+
+    const [theme, setTheme] = useState(
+        localStorage.getItem('theme') || 'light'
+    );
+    const toggleTheme = () => {
+        if (theme === 'light') {
+            setTheme('dark');
+        } else {
+            setTheme('light');
+        }
+    };
+    useEffect(() => {
+        localStorage.setItem('theme', theme);
+        document.body.className = theme;
+    }, [theme]);
+
 
     const logOutOnClick = () => {
         logOut()
@@ -41,6 +58,12 @@ const Header = () => {
                     </ul>
                     <img className='w-10 h-10 rounded-full' src={user?.photoURL} alt="" />
                 </div>
+                {/* theme...have to modify it */}
+                <div className={`App ${theme}`}>
+                    <button onClick={toggleTheme}>Toggle Theme</button>
+                </div>
+
+
                 <div className="navbar-end mr-5">
                     {
                         user?.uid ?
