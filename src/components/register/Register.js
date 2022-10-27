@@ -19,8 +19,9 @@ const Register = () => {
         const email = form.email.value;
         const password = form.password.value;
         const confirmPass = form.confirm.value;
-        console.log(name, url, email, password)
-
+        if (password !== confirmPass) {
+            alert('Password did not match');
+        }
         createUser(email, password, name, url)
             .then(result => {
                 const user = result.user;
