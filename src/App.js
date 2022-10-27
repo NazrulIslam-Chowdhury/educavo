@@ -50,8 +50,9 @@ function App() {
           element: <PrivateRoute><FAQ></FAQ></PrivateRoute>
         },
         {
-          path: '/checkout',
-          element: <CheackOutPage></CheackOutPage>
+          path: '/checkout/:id',
+          element: <CheackOutPage></CheackOutPage>,
+          loader: ({ params }) => fetch(`http://localhost:5000/course/${params.id}`)
         },
         {
           path: '*',
