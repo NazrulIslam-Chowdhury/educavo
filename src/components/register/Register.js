@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaFacebook, FaGoogle } from 'react-icons/fa';
 
 import { useState } from 'react';
@@ -7,8 +7,11 @@ import { AuthContext } from '../../authprovider/AuthProvider';
 
 const Register = () => {
     const { createUser, createUserWithGoogle, createUserWithFacebook } = useContext(AuthContext);
-
     const [error, setError] = useState('');
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const from = location.state?.from?.pathname || '/';
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -27,6 +30,8 @@ const Register = () => {
                 const user = result.user;
                 console.log(user);
                 form.reset();
+                setError('');
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 console.error('error', error);
@@ -39,9 +44,12 @@ const Register = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user)
+                setError('');
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 console.error('error', error);
+                setError(error.message);
             })
     }
 
@@ -50,6 +58,8 @@ const Register = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                setError('');
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 console.error('error', error)

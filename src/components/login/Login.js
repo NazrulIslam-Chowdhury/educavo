@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import { useContext } from 'react';
 import { FaFacebook, FaGoogle } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../authprovider/AuthProvider';
 
 const Login = () => {
     const { loginWithEmailPass, createUserWithGoogle, createUserWithFacebook } = useContext(AuthContext);
     const [error, setError] = useState('');
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const from = location.state?.from?.pathname || '/';
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -20,6 +24,9 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 form.reset();
+                setError('');
+                alert('Login successful');
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 console.error('error', error);
@@ -32,7 +39,8 @@ const Login = () => {
         createUserWithGoogle()
             .then(result => {
                 const user = result.user;
-                console.log(user)
+                console.log(user);
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 console.error('error', error);
@@ -44,6 +52,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 console.error('error', error)

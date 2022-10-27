@@ -46,6 +46,7 @@ const Header = () => {
                             <li><Link to='/'>Home</Link></li>
                             <li><Link to='/courses'>Courses</Link></li>
                             <li><Link to='/blog'>Blog</Link></li>
+                            <li><Link to='/faq'>FAQ</Link></li>
                         </ul>
                     </div>
                     <Link to='/' className="flex items-center normal-case text-3xl font-bold"><img src={img} className="h-16 w-16" alt='' />ducavo</Link>
@@ -55,12 +56,18 @@ const Header = () => {
                         <li><Link to='/'>Home</Link></li>
                         <li><Link to='/courses'>Courses</Link></li>
                         <li><Link to='/blog'>Blog</Link></li>
+                        <li><Link to='/faq'>FAQ</Link></li>
                     </ul>
+
+                </div>
+                <div>
                     <img className='w-10 h-10 rounded-full' src={user?.photoURL} alt="" />
                 </div>
                 {/* theme...have to modify it */}
                 <div className={`App ${theme}`}>
-                    <button onClick={toggleTheme}>Toggle Theme</button>
+                    <button onClick={toggleTheme}>
+                        Toggle Theme
+                    </button>
                 </div>
 
 

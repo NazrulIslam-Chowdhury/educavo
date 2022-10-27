@@ -8,6 +8,8 @@ import Details from './components/details/Details';
 import Blog from './components/blog/Blog';
 import Login from './components/login/Login';
 import Register from './components/register/Register';
+import PrivateRoute from './layouts/privateroute/PrivateRoute';
+import FAQ from './components/faq/FAQ';
 
 function App() {
   const router = createBrowserRouter([
@@ -22,7 +24,7 @@ function App() {
         {
           path: '/courses',
           loader: () => fetch('http://localhost:5000/courses'),
-          element: <Courses></Courses>
+          element: <PrivateRoute><Courses></Courses></PrivateRoute>
         },
         // {
         //   path: '/courses/:id',
@@ -49,6 +51,10 @@ function App() {
         {
           path: '/register',
           element: <Register></Register>
+        },
+        {
+          path: '/faq',
+          element: <PrivateRoute><FAQ></FAQ></PrivateRoute>
         },
         {
           path: '*',
