@@ -10,6 +10,7 @@ import Login from './components/login/Login';
 import Register from './components/register/Register';
 import PrivateRoute from './layouts/privateroute/PrivateRoute';
 import FAQ from './components/faq/FAQ';
+import CheackOutPage from './components/cheackoutpage/CheackOutPage';
 
 function App() {
   const router = createBrowserRouter([
@@ -23,21 +24,13 @@ function App() {
         },
         {
           path: '/courses',
-          loader: () => fetch('http://localhost:5000/courses'),
-          element: <PrivateRoute><Courses></Courses></PrivateRoute>
+          loader: () => fetch('http://localhost:5000/details'),
+          element: <Courses></Courses>
         },
-        // {
-        //   path: '/courses/:id',
-        //   loader: ({ params }) => {
-        //     fetch(`http://localhost:5000/courses/${params.id}`)
-        //   },
-        //   element: <Details></Details>
-        // },
+
         {
-          path: '/details/:id',
-          loader: () => {
-            fetch(`http://localhost:5000/details/06bcd6ea-ab97-4046-a70b-3ad2ad5dcc4a`)
-          },
+          path: "/course/:id",
+          loader: ({ params }) => fetch(`http://localhost:5000/course/${params.id}`),
           element: <Details></Details>
         },
         {
@@ -57,8 +50,12 @@ function App() {
           element: <PrivateRoute><FAQ></FAQ></PrivateRoute>
         },
         {
+          path: '/checkout',
+          element: <CheackOutPage></CheackOutPage>
+        },
+        {
           path: '*',
-          element: <p className='text-6xl font-bold'>Page is not found</p>
+          element: <p className='text-6xl font-bold text-white'>Page is not found</p>
         }
       ]
 

@@ -60,9 +60,8 @@ const Header = () => {
                     </ul>
 
                 </div>
-                <div>
-                    <img className='w-10 h-10 rounded-full' src={user?.photoURL} alt="" />
-                </div>
+                <img className='w-10 h-10 rounded-full' src={user?.photoURL} alt="" />
+
                 {/* theme...have to modify it */}
                 <div className={`App ${theme}`}>
                     <button onClick={toggleTheme}>
