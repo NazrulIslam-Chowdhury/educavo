@@ -18,7 +18,7 @@ const CourseTitle = () => {
             {
                 titles.map(title =>
                     <ul className='list-disc ml-2 mt-3' key={title.id}>
-                        <li>
+                        <li className='hover:bg-primary text-gray-200 p-2 rounded-lg'>
                             <Link to={`/course/${title.id}`}>{title.title}</Link>
                         </li>
                     </ul>

@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaFacebook, FaGoogle } from 'react-icons/fa';
-
 import { useState } from 'react';
 import { AuthContext } from '../../authprovider/AuthProvider';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Register = () => {
     const { createUser, createUserWithGoogle, createUserWithFacebook } = useContext(AuthContext);
@@ -23,17 +23,19 @@ const Register = () => {
         const password = form.password.value;
         const confirmPass = form.confirm.value;
         if (password !== confirmPass) {
-            alert('Password did not match');
+            toast.error("Oops! seems like 'confirm password' did not match 'password'");
         }
         createUser(email, password, name, url)
             .then(result => {
                 const user = result.user;
-                console.log(user)
+                // console.log(user)
                 form.reset();
                 setError('');
+                toast.success("Welcome to your mission 'Captain'");
                 navigate(from, { replace: true });
             })
             .catch(error => {
+                toast.error("Oops! something wrong 'Captain'");
                 setError(error.message);
             })
     }
@@ -42,11 +44,13 @@ const Register = () => {
         createUserWithGoogle()
             .then(result => {
                 const user = result.user;
-                console.log(user)
+                // console.log(user)
                 setError('');
+                toast.success("Welcome to your mission 'Captain'");
                 navigate(from, { replace: true });
             })
             .catch(error => {
+                toast.error("Oops! something wrong 'Captain'");
                 setError(error.message);
             })
     }
@@ -55,11 +59,13 @@ const Register = () => {
         createUserWithFacebook()
             .then(result => {
                 const user = result.user;
-                console.log(user);
+                // console.log(user);
                 setError('');
+                toast.success("Welcome to your mission 'Captain'");
                 navigate(from, { replace: true });
             })
             .catch(error => {
+                toast.error("Oops! something wrong 'Captain'");
                 setError(error.message);
             })
     }
@@ -102,7 +108,7 @@ const Register = () => {
                             </label>
                             <input type="password" placeholder="confirm password" name='confirm' className="input input-bordered" required />
                         </div>
-                        <p>Already have an account ?<Link to='/login' className="link link-hover">     Login now</Link></p>
+                        <p>Already have an account ?<Link to='/login' className="link link-hover text-success font-bold">     Login now</Link></p>
                         <p className='text-red-400 text-lg'>{error}</p>
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Register</button>
@@ -112,7 +118,10 @@ const Register = () => {
                         <hr />
                         <button onClick={createGoogleUserOnClick} className="btn btn-outline btn-primary"><FaGoogle />  Register with Google</button>
                         <button onClick={createFacebookUserOnClick} className="btn btn-outline btn-primary"><FaFacebook />  Register with Facebook</button>
+
                     </form>
+                    <Toaster position="top-center"
+                        reverseOrder={false} />
                 </div>
             </div>
         </div>

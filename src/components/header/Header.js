@@ -1,36 +1,34 @@
 import React, { useContext, useEffect } from 'react';
 import { useState } from 'react';
+import { FaMoon, FaSun } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+// import { themeChange } from 'theme-change';
 import { AuthContext } from '../../authprovider/AuthProvider';
 import img from './../../logo.png';
-import './Header.css';
+import toast, { Toaster } from 'react-hot-toast';
+
 
 const Header = () => {
+    // useEffect(() => {
+    //     themeChange(false)
+    // }, [])
     const { user, logOut } = useContext(AuthContext);
     const [error, setError] = useState();
+    const [isDarkMode, setDarkMode] = useState(true);
 
-    const [theme, setTheme] = useState(
-        localStorage.getItem('theme') || 'light'
-    );
-    const toggleTheme = () => {
-        if (theme === 'light') {
-            setTheme('dark');
-        } else {
-            setTheme('light');
-        }
-    };
-    useEffect(() => {
-        localStorage.setItem('theme', theme);
-        document.body.className = theme;
-    }, [theme]);
 
+
+    const handleTheme = () => {
+        setDarkMode(!isDarkMode)
+    }
 
     const logOutOnClick = () => {
         logOut()
             .then(() => {
-                alert('Sign-out successful')
+                toast.success("Goodbye! 'Captain")
             })
             .catch(() => {
+                toast.error("Oops! something wrong 'Captain'");
                 setError(error.message);
             })
     }
@@ -61,26 +59,32 @@ const Header = () => {
 
                 </div>
 
-                <div className="tooltip tooltip-open tooltip-accent" data-tip={user?.displayName}>
-                    <img className='w-10 h-10 rounded-full' src={user?.photoURL} alt="" />
-                </div>
+                <div className="navbar-end">
 
-                {/* theme...have to modify it */}
-                <div className={`App ${theme}`}>
-                    <button onClick={toggleTheme}>
-                        Toggle Theme
-                    </button>
-                </div>
+                    <div onClick={handleTheme} className='mr-1'>
+                        {isDarkMode ? (
+                            <button className='bg-black text-white p-2 rounded-full' data-set-theme="dark" data-act-class="ACTIVECLASs">
+                                <FaMoon />
+                            </button>
+                        ) : (
+                            <button className='bg-gray-600 text-white p-2 rounded-full' data-set-theme="pink" data-act-class="ACTIVECLASS">
+                                <FaSun />
+                            </button>
+                        )}
+                    </div>
+                    <div className="tooltip tooltip-bottom tooltip-success" data-tip={user?.displayName}>
+                        <img className='w-10 h-10 rounded-full border-none mr-1' src={user?.photoURL} alt="" />
+                    </div>
 
 
-                <div className="navbar-end mr-5">
                     {
                         user?.uid ?
                             <button onClick={logOutOnClick} className='btn'>Log Out</button>
                             :
                             <Link to='/login' className="btn">Login</Link>
                     }
-
+                    <Toaster position="top-center"
+                        reverseOrder={false} />
                 </div>
             </div>
         </div>
