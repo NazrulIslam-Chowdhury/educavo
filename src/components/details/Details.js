@@ -4,10 +4,12 @@ import { Link, useLoaderData } from 'react-router-dom';
 
 
 
+
 const Details = () => {
     const cardDetail = useLoaderData();
     return (
         <div>
+
             <div className="tooltip tooltip-right tooltip-success font-semibold" data-tip="Click to Download pdf">
                 <button className=' text-success' onClick={() => window.print()}><FaPrint className='ml-10 w-10 h-10 mt-4' /></button>
             </div>
@@ -35,5 +37,6 @@ const Details = () => {
 
     );
 };
+
 
 export default Details;

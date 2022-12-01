@@ -12,6 +12,8 @@ import PrivateRoute from './layouts/privateroute/PrivateRoute';
 import FAQ from './components/faq/FAQ';
 import CheackOutPage from './components/cheackoutpage/CheackOutPage';
 
+
+
 function App() {
   const router = createBrowserRouter([
     {

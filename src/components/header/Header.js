@@ -1,26 +1,39 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { useState } from 'react';
 import { FaMoon, FaSun } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-// import { themeChange } from 'theme-change';
 import { AuthContext } from '../../authprovider/AuthProvider';
 import img from './../../logo.png';
 import toast, { Toaster } from 'react-hot-toast';
+import { useEffect } from 'react';
 
 
 const Header = () => {
-    // useEffect(() => {
-    //     themeChange(false)
-    // }, [])
+
     const { user, logOut } = useContext(AuthContext);
     const [error, setError] = useState();
-    const [isDarkMode, setDarkMode] = useState(true);
+    const [isDarkMode, setDarkMode] = useState(false);
 
 
 
     const handleTheme = () => {
-        setDarkMode(!isDarkMode)
+        setDarkMode(!isDarkMode);
+        localStorage.setItem('dark-mode', !isDarkMode);
     }
+
+    useEffect(() => {
+        if (isDarkMode) {
+            document.querySelector('html').setAttribute('data-theme', 'dark')
+        }
+        else {
+            document.querySelector('html').setAttribute('data-theme', 'spaTheme')
+        }
+    }, [isDarkMode]);
+
+    useEffect(() => {
+        const localDark = JSON.parse(localStorage.getItem('dark-mode'));
+        setDarkMode(localDark);
+    }, []);
 
     const logOutOnClick = () => {
         logOut()
@@ -34,7 +47,7 @@ const Header = () => {
     }
     return (
         <div>
-            <div className="navbar bg-base-100">
+            <div className="navbar bg-base-200">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -45,9 +58,12 @@ const Header = () => {
                             <li><Link to='/courses'>Courses</Link></li>
                             <li><Link to='/blog'>Blog</Link></li>
                             <li><Link to='/faq'>FAQ</Link></li>
+                            <div className="tooltip tooltip-bottom tooltip-success" data-tip={user?.displayName}>
+                                <img className='w-10 h-10 rounded-full border-none mr-1' src={user?.photoURL} alt="" />
+                            </div>
                         </ul>
                     </div>
-                    <Link to='/' className="flex items-center normal-case text-3xl font-bold"><img src={img} className="h-16 w-16" alt='' />ducavo</Link>
+                    <Link to='/' className="flex items-center normal-case text-3xl font-bold mr-3"><img src={img} className="h-16 w-16" alt='' />ducavo</Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal p-0 text-lg font-semibold text-gray-500">
@@ -55,28 +71,25 @@ const Header = () => {
                         <li><Link to='/courses'>Courses</Link></li>
                         <li><Link to='/blog'>Blog</Link></li>
                         <li><Link to='/faq'>FAQ</Link></li>
+                        <div className="tooltip tooltip-bottom tooltip-success" data-tip={user?.displayName}>
+                            <img className='w-10 h-10 rounded-full border-none mr-1' src={user?.photoURL} alt="" />
+                        </div>
                     </ul>
-
                 </div>
 
                 <div className="navbar-end">
 
                     <div onClick={handleTheme} className='mr-1'>
                         {isDarkMode ? (
-                            <button className='bg-black text-white p-2 rounded-full' data-set-theme="dark" data-act-class="ACTIVECLASs">
+                            <button className='bg-black text-white p-2 rounded-full'>
                                 <FaMoon />
                             </button>
                         ) : (
-                            <button className='bg-gray-600 text-white p-2 rounded-full' data-set-theme="pink" data-act-class="ACTIVECLASS">
+                            <button className='bg-gray-600 text-white p-2 rounded-full'>
                                 <FaSun />
                             </button>
                         )}
                     </div>
-                    <div className="tooltip tooltip-bottom tooltip-success" data-tip={user?.displayName}>
-                        <img className='w-10 h-10 rounded-full border-none mr-1' src={user?.photoURL} alt="" />
-                    </div>
-
-
                     {
                         user?.uid ?
                             <button onClick={logOutOnClick} className='btn'>Log Out</button>
